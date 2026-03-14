@@ -69,6 +69,7 @@ export default {
   achievements: [
     { title: 'Top 1 Employee of the Year', detail: '2025' },
     { title: 'Top 2 Employee of the Year', detail: '2024' },
+    { title: 'Top 1 Employee of the Year', detail: '2023' },
   ],
 
   eligibility: [
