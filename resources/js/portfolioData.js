@@ -67,7 +67,7 @@ export default {
   ],
 
   achievements: [
-    { title: 'Employee of The Week', organization: 'LGU-Cagayan de Oro City', year: '2025' },
+    { title: 'Employee of The Week', organization: 'LGU-Cagayan de Oro City', year: '2024' },
     { title: 'Top 1 Employee of the Year', organization: 'City College of Cagayan de Oro', year: '2025' },
     { title: 'Top 2 Employee of the Year', organization: 'City College of Cagayan de Oro', year: '2024' },
     { title: 'Top 1 Employee of the Year', organization: 'City College of Cagayan de Oro', year: '2023' },
