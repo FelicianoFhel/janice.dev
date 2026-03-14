@@ -8,30 +8,16 @@ define('LARAVEL_START', microtime(true));
 // Serverless platforms (e.g., Vercel) use a read-only app filesystem.
 // Force Laravel cache/log targets to writable/stream destinations.
 if (is_dir('/tmp')) {
-    if (! getenv('APP_CONFIG_CACHE')) {
-        putenv('APP_CONFIG_CACHE=/tmp/config.php');
-    }
-    if (! getenv('APP_EVENTS_CACHE')) {
-        putenv('APP_EVENTS_CACHE=/tmp/events.php');
-    }
-    if (! getenv('APP_PACKAGES_CACHE')) {
-        putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
-    }
-    if (! getenv('APP_ROUTES_CACHE')) {
-        putenv('APP_ROUTES_CACHE=/tmp/routes.php');
-    }
-    if (! getenv('APP_SERVICES_CACHE')) {
-        putenv('APP_SERVICES_CACHE=/tmp/services.php');
-    }
-    if (! getenv('VIEW_COMPILED_PATH')) {
-        putenv('VIEW_COMPILED_PATH=/tmp');
-    }
-    if (! getenv('SESSION_DRIVER')) {
-        putenv('SESSION_DRIVER=cookie');
-    }
-    if (! getenv('LOG_CHANNEL')) {
-        putenv('LOG_CHANNEL=stderr');
-    }
+    // Always force safe runtime paths on serverless, even if .env has file-based values.
+    putenv('APP_CONFIG_CACHE=/tmp/config.php');
+    putenv('APP_EVENTS_CACHE=/tmp/events.php');
+    putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
+    putenv('APP_ROUTES_CACHE=/tmp/routes.php');
+    putenv('APP_SERVICES_CACHE=/tmp/services.php');
+    putenv('VIEW_COMPILED_PATH=/tmp');
+    putenv('SESSION_DRIVER=cookie');
+    putenv('SESSION_FILES=/tmp/sessions');
+    putenv('LOG_CHANNEL=stderr');
 }
 
 /*

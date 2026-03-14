@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', getenv('VERCEL') ? 'cookie' : 'file'),
+    'driver' => getenv('VERCEL') ? 'cookie' : env('SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +59,9 @@ return [
     |
     */
 
-    'files' => storage_path('framework/sessions'),
+    'files' => getenv('VERCEL')
+        ? env('SESSION_FILES', '/tmp/sessions')
+        : storage_path('framework/sessions'),
 
     /*
     |--------------------------------------------------------------------------
