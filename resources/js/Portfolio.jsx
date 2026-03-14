@@ -323,11 +323,18 @@ function Portfolio() {
           <div className="mx-auto max-w-3xl px-6 py-20">
             <SectionLabel>Awards & Recognition</SectionLabel>
             <h2 className="text-2xl font-bold sm:text-3xl" style={{ color: 'var(--heading)' }}>Achievements</h2>
-            <ul className="mt-10 space-y-4">
+            <ul className="mt-10 space-y-6" role="list">
               {data.achievements.map((item, i) => (
-                <li key={i} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2">
-                  <span className="font-medium" style={{ color: 'var(--heading)' }}>{item.title}</span>
-                  {item.detail && <span className="text-sm theme-muted" style={{ color: 'var(--muted)' }}>{item.detail}</span>}
+                <li key={i} className="flex flex-col gap-1">
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                    <span className="font-medium" style={{ color: 'var(--heading)' }}>{item.title}</span>
+                    {item.year && (
+                      <span className="text-sm" style={{ color: 'var(--muted)' }}>{item.year}</span>
+                    )}
+                  </div>
+                  {item.organization && (
+                    <p className="text-sm" style={{ color: 'var(--muted)' }}>{item.organization}</p>
+                  )}
                 </li>
               ))}
             </ul>
