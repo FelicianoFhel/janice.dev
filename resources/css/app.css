@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Portfolio theme: single source of truth for
+   light/dark. All colors via variables so
+   mode switch transforms text and UI correctly.
+   ============================================ */
+
+/* Light theme (default) */
+.portfolio-root {
+  --page-bg: #f8fafc;
+  --page-text: #334155;
+  --heading: #0f172a;
+  --heading-secondary: #1e293b;
+  --body: #475569;
+  --muted: #64748b;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --hero-bg: linear-gradient(to bottom, #f1f5f9, #ffffff);
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --header-border: #e2e8f0;
+  --section-bg: #ffffff;
+  --section-alt: #f1f5f9;
+  --border: #e2e8f0;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --tag-bg: #eef2ff;
+  --tag-text: #3730a3;
+  --tag-border: #c7d2fe;
+  --timeline-line: #c7d2fe;
+  --timeline-dot: #4f46e5;
+  --timeline-dot-ring: #eef2ff;
+}
+
+/* Dark theme */
+.portfolio-root.theme-dark {
+  --page-bg: #0f172a;
+  --page-text: #cbd5e1;
+  --heading: #f8fafc;
+  --heading-secondary: #e2e8f0;
+  --body: #94a3b8;
+  --muted: #94a3b8;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --hero-bg: linear-gradient(to bottom, #1e293b, #0f172a);
+  --header-bg: rgba(15, 23, 42, 0.95);
+  --header-border: #334155;
+  --section-bg: #1e293b;
+  --section-alt: #0f172a;
+  --border: #334155;
+  --card-bg: #1e293b;
+  --card-border: #475569;
+  --tag-bg: #312e81;
+  --tag-text: #c7d2fe;
+  --tag-border: #4338ca;
+  --timeline-line: #4338ca;
+  --timeline-dot: #818cf8;
+  --timeline-dot-ring: #1e293b;
+}
+
+/* Base */
+.portfolio-root {
+  background-color: var(--page-bg);
+  color: var(--page-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Theme utility classes – use these instead of Tailwind text/bg colors */
+.portfolio-root .theme-heading { color: var(--heading); }
+.portfolio-root .theme-heading-secondary { color: var(--heading-secondary); }
+.portfolio-root .theme-body { color: var(--body); }
+.portfolio-root .theme-muted { color: var(--muted); }
+.portfolio-root .theme-accent { color: var(--accent); }
+.portfolio-root .theme-accent-hover:hover { color: var(--accent-hover); }
+.portfolio-root .theme-border { border-color: var(--border); }
+.portfolio-root .theme-section { background-color: var(--section-bg); }
+.portfolio-root .theme-section-alt { background-color: var(--section-alt); }
+.portfolio-root .theme-tag {
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  border-color: var(--tag-border);
+}
+.portfolio-root header {
+  background-color: var(--header-bg);
+  border-color: var(--header-border);
+}
+.portfolio-root header a:hover { color: var(--accent); }
+.portfolio-root header nav a:hover { color: var(--heading); }
+.portfolio-root header button:hover { color: var(--heading); }
+.portfolio-root footer button:hover { color: var(--heading); }
+.portfolio-root a[href^="mailto"],
+.portfolio-root a[href^="tel"],
+.portfolio-root a[rel="noopener"] { color: var(--accent); }
+.portfolio-root a[href^="mailto"]:hover,
+.portfolio-root a[href^="tel"]:hover,
+.portfolio-root a[rel="noopener"]:hover { color: var(--accent-hover); }
+.portfolio-root .timeline-item::before { background-color: var(--timeline-line); }
+.portfolio-root .timeline-item::after { background-color: var(--timeline-dot); box-shadow: 0 0 0 4px var(--timeline-dot-ring); }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Section reveal on scroll */
+.portfolio-root section { opacity: 0; transform: translateY(14px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.portfolio-root section.section-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-root section { opacity: 1; transform: none; transition: none; }
+  .portfolio-root section.section-visible { opacity: 1; transform: none; }
+}
+
+/* Print */
+@media print {
+  .portfolio-root header nav,
+  .portfolio-root header button[aria-label],
+  .portfolio-root .fixed.z-40,
+  .portfolio-root footer button { display: none !important; }
+  .portfolio-root { background: #fff; color: #111; }
+  .portfolio-root section { break-inside: avoid; }
+  .portfolio-root a[href^="mailto"]::after { content: " (" attr(href) ")"; }
+  .portfolio-root a[href^="tel"]::after { content: " (" attr(href) ")"; }
+}
