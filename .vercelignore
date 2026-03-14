@@ -1,1 +1,1 @@
-/vendor
+# Keep vendor in deployment (committed to repo for Vercel; no Composer in build env)
